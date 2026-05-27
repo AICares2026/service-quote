@@ -1,0 +1,20 @@
+service:
+  name: quote
+image:
+  repository: 952893849914.dkr.ecr.us-east-1.amazonaws.com/aicares-application/quote
+containerPort: 8090
+resources:
+  limits:
+    memory: "40Mi"
+  requests:
+    memory: "16Mi"
+    cpu: "50m"
+env:
+  - name: QUOTE_PORT
+    value: "8090"
+  - name: OTEL_SERVICE_NAME
+    value: "quote"
+  - name: OTEL_EXPORTER_OTLP_ENDPOINT
+    value: "http://otel-collector:4317"
+nodeSelector:
+  eks.amazonaws.com/nodegroup: graviton-workers
