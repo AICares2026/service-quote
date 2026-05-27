@@ -8,7 +8,7 @@ FROM docker.io/library/composer:2.8.12 AS vendor
 
 WORKDIR /tmp/
 
-COPY ./src/quote/composer.json composer.json
+COPY ./composer.json composer.json
 
 RUN composer install \
     --ignore-platform-reqs \
@@ -30,9 +30,9 @@ USER www-data
 
 COPY --from=vendor /tmp/vendor/ vendor/
 
-COPY ./src/quote/app/ app/
-COPY ./src/quote/public/ public/
-COPY ./src/quote/src/ src/
+COPY ./app/ app/
+COPY ./public/ public/
+COPY ./src/ src/
 
 EXPOSE ${QUOTE_PORT}
 
